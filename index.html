@@ -105,26 +105,8 @@
             color: var(--medium-grey);
             margin-top: 10px;
             font-style: italic;
-            padding: 0 10%;
+            padding: 0 6%;
         }
-
-        .img-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--light-grey);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: #bbb;
-            gap: 6px;
-        }
-
-        .img-placeholder svg { width: 36px; height: 36px; opacity: 0.35; }
-        .img-placeholder span { font-size: 12px; }
-
-        .img-placeholder.main { height: 320px; }
-        .img-placeholder.tab { height: 260px; }
 
         .tabs-nav {
             display: flex;
@@ -200,6 +182,24 @@
 
         .tab-img-wrapper img { width: 100%; display: block; }
 
+        /* Stacked figures inside tab with individual captions */
+        .tab-figure {
+            margin-bottom: 24px;
+        }
+
+        .tab-figure:last-child {
+            margin-bottom: 0;
+        }
+
+        .tab-figure .tab-img-wrapper {
+            margin-bottom: 0;
+        }
+
+        .tab-figure .caption {
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
         .footer {
             padding: 32px 0;
             text-align: center;
@@ -233,65 +233,61 @@
 
     <main class="container">
 
+        <!-- ── Main Figure ── -->
         <section class="section">
             <div class="figure-container">
-                <!--
-                    <div class="img-placeholder main">...</div> 삭제 후
-                    <img src="./figures/main_result.png" alt="Main Result" class="responsive-img border-img">
-                -->
-                <div class="img-placeholder main">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                    <span>main_result.png</span>
-                </div>
-                <p class="caption"><strong>Figure 1.</strong> Main experimental results.</p>
+                <img src="./figures/main.png" alt="Main Result" class="responsive-img border-img">
+                <p class="caption"><strong>Table 1.</strong> Normalized performance of post-hoc and many-shot merging on Gemma-2-2B, Llama-3.2-3B, Llama-3.1-8B, and Qwen-3-4B across four tasks.</p>
             </div>
         </section>
 
+        <!-- ── Tabs (2 tabs) ── -->
         <section class="section">
             <h2 class="section-title">Additional Experiments</h2>
 
             <nav class="tabs-nav">
-                <button class="tab-btn active" data-tab="tab1">Extended Results: + Qwen Architecture</button>
-                <button class="tab-btn" data-tab="tab2">Comparison with SOTA Baselines</button>
-                <button class="tab-btn" data-tab="tab3">Additional Results on 7 / 8 / 11 Tasks</button>
+                <button class="tab-btn active" data-tab="tab1">Comparison with SOTA Baselines</button>
+                <button class="tab-btn" data-tab="tab2">Additional Results on 7 / 8 / 11 Tasks</button>
             </nav>
 
             <div class="tab-panels">
 
+                <!-- Tab 1: SOTA Baselines -->
                 <div class="tab-panel active" id="tab1">
-                    <h3>Extended Results: Including Qwen Architecture</h3>
-                    <p class="desc">We extend our main evaluation by adding Qwen to the existing set of base models, demonstrating consistent improvements across four architectures.</p>
-                    <div class="tab-img-wrapper">
-                        <!-- <img src="./figures/tab1_extended_qwen.png" alt="Extended Results with Qwen"> -->
-                        <div class="img-placeholder tab">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span>tab1_extended_qwen.png</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-panel" id="tab2">
                     <h3>Comparison with SOTA Baselines</h3>
-                    <p class="desc">We include all recent state-of-the-art merging baselines for a comprehensive comparison, confirming the effectiveness of the proposed method.</p>
+                    <p class="desc">We include all recent state-of-the-art merging baselines, federated/iterative approaches, data mixing, and conventional baselines for a comprehensive comparison.</p>
                     <div class="tab-img-wrapper">
-                        <!-- <img src="./figures/tab2_sota_baselines.png" alt="SOTA Baselines Comparison"> -->
-                        <div class="img-placeholder tab">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span>tab2_sota_baselines.png</span>
-                        </div>
+                        <img src="./figures/baseline.png" alt="SOTA Baselines Comparison">
                     </div>
+                    <p class="caption"><strong>Table 2.</strong> Normalized performance of baseline methods on Llama-3.2-3B across four tasks. We compare all recent state-of-the-art merging baselines, federated/iterative approaches, data mixing, and conventional baselines.</p>
                 </div>
 
-                <div class="tab-panel" id="tab3">
-                    <h3>Additional Results on 7 / 8 / 11 Task Settings</h3>
+                <!-- Tab 2: 7 / 8 / 11 Tasks -->
+                <div class="tab-panel" id="tab2">
+                    <h3>Additional Results on 7 / 8 / 11 Tasks</h3>
                     <p class="desc">We further evaluate under varying task configurations (7, 8, and 11 tasks) to verify that the proposed method generalizes across different multi-task setups.</p>
-                    <div class="tab-img-wrapper">
-                        <!-- <img src="./figures/tab3_7_8_11_tasks.png" alt="7/8/11 Task Results"> -->
-                        <div class="img-placeholder tab">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span>tab3_7_8_11_tasks.png</span>
+
+                    <div class="tab-figure">
+                        <div class="tab-img-wrapper">
+                            <img src="./figures/7.png" alt="7 Task Results">
                         </div>
+                        <p class="caption"><strong>Table 3.</strong> Normalized performance on 7 NLP tasks for Llama-3.2-3B and Llama-3.1-8B, comparing METIS against baseline methods equipped with many-shot.</p>
                     </div>
+
+                    <div class="tab-figure">
+                        <div class="tab-img-wrapper">
+                            <img src="./figures/8.png" alt="8 Task Results">
+                        </div>
+                        <p class="caption"><strong>Table 4.</strong> Normalized performance on 8 QA tasks for Llama-3.2-3B and Llama-3.1-8B, comparing METIS against baseline methods equipped with many-shot.</p>
+                    </div>
+
+                    <div class="tab-figure">
+                        <div class="tab-img-wrapper">
+                            <img src="./figures/11.png" alt="11 Task Results">
+                        </div>
+                        <p class="caption"><strong>Table 5.</strong> Normalized performance on all 11 tasks for Llama-3.2-3B and Llama-3.1-8B, comparing METIS against baseline methods equipped with many-shot.</p>
+                    </div>
+
                 </div>
 
             </div>
