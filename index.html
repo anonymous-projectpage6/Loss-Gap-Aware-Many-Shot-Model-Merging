@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METIS: Supplementary Experiments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <style>
+        :root {
+            --primary-teal: #00a699;
+            --dark-grey: #333;
+            --medium-grey: #666;
+            --light-grey: #f9fafb;
+            --border-color: #e5e7eb;
+            --font-main: 'Inter', 'Noto Sans KR', -apple-system,
+                         BlinkMacSystemFont, 'Segoe UI',
+                         Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-grey);
+            line-height: 1.7;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .hero {
+            padding: 32px 0 24px;
+            text-align: center;
+            background: radial-gradient(circle at center, #ffffff 0%, #fcfcfc 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .paper-title {
+            font-size: 1.65rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .highlight { color: var(--primary-teal); }
+
+        .authors {
+            font-size: 0.95rem;
+            color: var(--medium-grey);
+            margin-bottom: 4px;
+        }
+
+        .venue {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .section {
+            padding: 28px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-teal);
+            margin: 10px auto 0;
+        }
+
+        .figure-container {
+            text-align: center;
+            margin: 0;
+        }
+
+        .responsive-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .border-img {
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .caption {
+            font-size: 0.85rem;
+            color: var(--medium-grey);
+            margin-top: 10px;
+            font-style: italic;
+            padding: 0 10%;
+        }
+
+        .img-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-grey);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #bbb;
+            gap: 6px;
+        }
+
+        .img-placeholder svg { width: 36px; height: 36px; opacity: 0.35; }
+        .img-placeholder span { font-size: 12px; }
+
+        .img-placeholder.main { height: 320px; }
+        .img-placeholder.tab { height: 260px; }
+
+        .tabs-nav {
+            display: flex;
+            border-bottom: 3px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 10px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+            color: var(--medium-grey);
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--dark-grey);
+            background: var(--light-grey);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-teal);
+            border-bottom-color: var(--primary-teal);
+            font-weight: 700;
+        }
+
+        .tab-panels {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .tab-panel {
+            display: none;
+            padding: 24px 22px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-panel.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-panel h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark-grey);
+            margin-bottom: 4px;
+        }
+
+        .tab-panel .desc {
+            font-size: 0.9rem;
+            color: var(--medium-grey);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .tab-img-wrapper {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-img-wrapper img { width: 100%; display: block; }
+
+        .footer {
+            padding: 32px 0;
+            text-align: center;
+            color: #999;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .paper-title { font-size: 1.15rem; }
+            .hero { padding: 24px 0 18px; }
+            .tabs-nav { flex-direction: column; }
+            .tab-btn { text-align: left; border-bottom: 1px solid var(--border-color); margin-bottom: 0; }
+            .tab-btn.active { border-bottom-color: var(--primary-teal); }
+            .tab-panel { padding: 18px 14px; }
+            .section { padding: 20px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="paper-title">
+                Post-Hoc Merging Is Not Enough: <br>
+                <span class="highlight">Many-Shot Model Merging with Loss-Gap Balancing</span>
+            </h1>
+            <div class="authors">Anonymous Authors</div>
+            <div class="venue">Supplementary experimental results for the rebuttal period.</div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="section">
+            <div class="figure-container">
+                <!--
+                    <div class="img-placeholder main">...</div> 삭제 후
+                    <img src="./figures/main_result.png" alt="Main Result" class="responsive-img border-img">
+                -->
+                <div class="img-placeholder main">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span>main_result.png</span>
+                </div>
+                <p class="caption"><strong>Figure 1.</strong> Main experimental results.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Additional Experiments</h2>
+
+            <nav class="tabs-nav">
+                <button class="tab-btn active" data-tab="tab1">Extended Results: + Qwen Architecture</button>
+                <button class="tab-btn" data-tab="tab2">Comparison with SOTA Baselines</button>
+                <button class="tab-btn" data-tab="tab3">Additional Results on 7 / 8 / 11 Tasks</button>
+            </nav>
+
+            <div class="tab-panels">
+
+                <div class="tab-panel active" id="tab1">
+                    <h3>Extended Results: Including Qwen Architecture</h3>
+                    <p class="desc">We extend our main evaluation by adding Qwen to the existing set of base models, demonstrating consistent improvements across four architectures.</p>
+                    <div class="tab-img-wrapper">
+                        <!-- <img src="./figures/tab1_extended_qwen.png" alt="Extended Results with Qwen"> -->
+                        <div class="img-placeholder tab">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span>tab1_extended_qwen.png</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="tab2">
+                    <h3>Comparison with SOTA Baselines</h3>
+                    <p class="desc">We include all recent state-of-the-art merging baselines for a comprehensive comparison, confirming the effectiveness of the proposed method.</p>
+                    <div class="tab-img-wrapper">
+                        <!-- <img src="./figures/tab2_sota_baselines.png" alt="SOTA Baselines Comparison"> -->
+                        <div class="img-placeholder tab">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span>tab2_sota_baselines.png</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="tab3">
+                    <h3>Additional Results on 7 / 8 / 11 Task Settings</h3>
+                    <p class="desc">We further evaluate under varying task configurations (7, 8, and 11 tasks) to verify that the proposed method generalizes across different multi-task setups.</p>
+                    <div class="tab-img-wrapper">
+                        <!-- <img src="./figures/tab3_7_8_11_tasks.png" alt="7/8/11 Task Results"> -->
+                        <div class="img-placeholder tab">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span>tab3_7_8_11_tasks.png</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">Anonymous Submission &mdash; Supplementary Materials for Rebuttal</div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
